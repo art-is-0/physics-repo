@@ -1,7 +1,3 @@
 # Just some random code for my physics class
 
-Just the headliner!
-
-## Subheader
-
-Deez nuts
+Doing this so i can work on my desktop and laptop
