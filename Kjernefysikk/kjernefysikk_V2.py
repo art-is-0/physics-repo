@@ -44,7 +44,34 @@ class one_three(Info):
         self.m_for = self.m_1_f
         self.m_etter = self.m_1_e + self.m_2_e + self.m_3_e
 
-"""
+class two_one(Info):
+    def __init__(self, m_1_f, m_2_f, m_1_e):
+        super().__init__(m_1_f, m_1_e)
+        self.m_2_f = data[m_2_f, 1]
+
+        self.m_for = self.m_1_f + self.m_2_f
+        self.m_etter = self.m_1_e
+
+class two_two(Info):
+    def __init__(self, m_1_f, m_2_f, m_1_e, m_2_e):
+        super().__init__(m_1_f, m_1_e)
+        self.m_2_f = data[m_2_f, 1]
+        self.m_2_e = data[m_2_e, 1]
+
+        self.m_for = self.m_1_f + self.m_2_f
+        self.m_etter = self.m_1_e + self.m_2_e
+
+class two_three(Info):
+    def __init__(self, m_1_f, m_2_f, m_1_e, m_2_e, m_3_e):
+        super().__init__(m_1_f, m_1_e)
+        self.m_2_f = data[m_2_f, 1]
+        self.m_2_e = data[m_2_e, 1]
+        self.m_3_e = data[m_3_e, 1]
+
+        self.m_for = self.m_1_f + self.m_2_f
+        self.m_etter = self.m_1_e + self.m_2_e + self.m_3_e
+
+
 print("Hvor mange kjerner er det før?")
 metode_for = int(input())
 
@@ -59,7 +86,8 @@ if metode_for == 1:
         me_1 = int(input())
         print("Hva er det andre nukleon tallet etter")
         me_2 = int(input())
-        Oppgave = Info(data[mf_1,2], data[me_1,2] + data[me_2,2])
+        Oppgave = one_two(data[mf_1,2], data[me_1,2] + data[me_2,2])
+        
 
     if metode_etter == 3:
         print("Hva er det første nukleon tallet etter")
@@ -68,8 +96,8 @@ if metode_for == 1:
         me_2 = int(input())
         print("Hva er det tredje nukleon tallet etter")
         me_3 = int(input())
-        Oppgave = Info(data[mf_1,2], data[me_1,2] + data[me_2,2], data[me_3,2])
-    Oppgave.Beregne()        
+        Oppgave = one_three(data[mf_1,2], data[me_1,2] + data[me_2,2], data[me_3,2])
+    Oppgave()        
 
 if metode_for == 2:
     print("Hva er nukleon tallet før")
@@ -82,7 +110,7 @@ if metode_for == 2:
         me_1 = int(input())
         print("Hva er det andre nukleon tallet før")
         me_2 = int(input())
-        Oppgave = Info(data[mf_1,2] + data[mf_2,2], data[me_1,2])
+        Oppgave = two_one(data[mf_1,2] + data[mf_2,2], data[me_1,2])
 
     if metode_etter == 2:
         print("Hva er det første nukleon tallet før")
@@ -91,7 +119,7 @@ if metode_for == 2:
         me_2 = int(input())
         print("Hva er det tredje nukleon tallet før")
         me_3 = int(input())
-        Oppgave = Info(data[mf_1,2] + data[mf_2,2], data[me_1,2] + data[me_2,2])
+        Oppgave = two_two(data[mf_1,2] + data[mf_2,2], data[me_1,2] + data[me_2,2])
 
     if metode_etter == 3:
         print("Hva er det første nukleon tallet før")
@@ -100,5 +128,5 @@ if metode_for == 2:
         me_2 = int(input())
         print("Hva er det tredje nukleon tallet før")
         me_3 = int(input())
-        Oppgave = Info(data[mf_1,2] + data[mf_2,2], data[me_1,2] + data[me_2,2], data[me_3,2])
+        Oppgave = two_three(data[mf_1,2] + data[mf_2,2], data[me_1,2] + data[me_2,2], data[me_3,2])
     Oppgave.Beregne()
