@@ -3,44 +3,46 @@ import numpy as np
 data = np.loadtxt("./Massen_til_nuklider.xps")
 
 class Info:
-    def __init__(self, m_for, m_etter):
-        """konstanter"""
-        self.u = 1.660539e-27
-        self.c = 2.9972e8
+
+    """konstanter"""
+    u = 1.660539e-27
+    c = 2.9972e8
+
+    def __init__(self, m_1_f, m_1_e):
 
         """regning"""
         self.m_for = 0
         self.m_etter = 0
 
-        """Variabler"""
-        self.m_for = m_for
-        self.m_etter = m_etter
+        self.m_1_f = data[m_1_f, 1]
+        self.m_1_e = data[m_1_e, 1]
 
     def Beregne(self):
         self.dm = self.m_for - self.m_etter
 
-        print('frigjort masse =', self.dm,'u','=',self.dm*self.u,"kg") 
+        print('frigjort masse =', self.dm,'u','=',self.dm*Info.u,"kg") 
 
         """Beregne reaksjonsenergi pr kjernereaksjon fra E=mc^2"""
-        self.E = self.dm * self.u * self.c**2
+        self.E = self.dm * Info.u * Info.c**2
         print("Reaksjonsenergi:",self.E,"J")
 
-"""""
-class Mengde(Info):
-    def one_two(self, m_1, m_2, m_3):
-        m_1_u = data[m_1, 1]
-        m_2_u = data[m_2, 1]
-        m_3_u = data[m_3, 1]
-        self.m_for = m_1_u
-        self.m_etter = m_2_u + m_3_u
 
-    def one_three(self, m_1, m_2, m_3, m_4):
-        m_1_u = data[m_1, 1]
-        m_2_u = data[m_2, 1]
-        m_3_u = data[m_3, 1]
-        m_4_u = data[m_4, 1]
-        self.m_for = m_1_u
-        self.m_etter = m_2_u + m_3_u + m_4_u
+class one_two(Info):
+    def __init__(self, m_1_f, m_1_e, m_2_e):
+        super().__init__(m_1_f, m_1_e)
+        self.m_2_h = data[m_2_e, 1]
+
+        self.m_for = self.m_1_f
+        self.m_etter = self.m_1_e + self.m_2_e
+
+class one_three(Info):
+    def __init__(self, m_1_f, m_1_e, m_2_e, m_3_e):
+        super().__init__(m_1_f, m_1_e)
+        self.m_2_h = data[m_2_e, 1]
+        self.m_3_h = data[m_3_e, 1]
+
+        self.m_for = self.m_1_f
+        self.m_etter = self.m_1_e + self.m_2_e + self.m_3_e
 
 """
 print("Hvor mange kjerner er det før?")
