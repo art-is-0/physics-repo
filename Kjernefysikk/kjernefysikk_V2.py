@@ -129,4 +129,4 @@ if metode_for == 2:
         print("Hva er det tredje nukleon tallet før")
         me_3 = int(input())
         Oppgave = two_three(data[mf_1,2] + data[mf_2,2], data[me_1,2] + data[me_2,2], data[me_3,2])
-    Oppgave.Beregne()
+    Oppgave()
