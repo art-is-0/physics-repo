@@ -1,6 +1,6 @@
 import numpy as np
 
-data = np.loadtxt("./Massen_til_nuklider.xps")
+data = np.loadtxt("./Massen_til_nuklider.txt")
 
 class Info:
 
@@ -97,7 +97,7 @@ if metode_for == 1:
         print("Hva er det tredje nukleon tallet etter")
         me_3 = int(input())
         Oppgave = one_three(data[mf_1,2], data[me_1,2] + data[me_2,2], data[me_3,2])
-    Oppgave()        
+    Oppgave.Beregne()        
 
 if metode_for == 2:
     print("Hva er nukleon tallet før")
@@ -129,4 +129,4 @@ if metode_for == 2:
         print("Hva er det tredje nukleon tallet før")
         me_3 = int(input())
         Oppgave = two_three(data[mf_1,2] + data[mf_2,2], data[me_1,2] + data[me_2,2], data[me_3,2])
-    Oppgave()
+    Oppgave.Beregne()
