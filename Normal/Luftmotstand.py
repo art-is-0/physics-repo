@@ -7,11 +7,11 @@ from matplotlib.pyplot import *
 
 # noe_0 = startnoe
 t_0 = 0     #(s)
-h_0 = 0  #(m)
-v_0 = 200     #(m/s)
-m = 85       #(kg)
+h_0 = 10  #(m)
+v_0 = -2     #(m/s)
+m = 1       #(kg)
 g = 9.81    #(m/s^2)
-k = 0.3    # luftmotstandkoeffisient
+k = 0.02    # luftmotstandkoeffisient
 
 T = 10      # tid vi skal vise (s)
 dt = 0.001  # tidssteg(s)
@@ -59,6 +59,7 @@ ylabel ('height (m)')
 grid(1)
 title('Height')
 
+
 figure(2)
 plot(t_l, v_l, 'r-')
 xlabel ('time (s)')
@@ -66,12 +67,14 @@ ylabel ('velocity (m/s)')
 grid(1)
 title('Velocity')
 
+
 figure(3)
 plot(t_l, a_l, 'g-')
 xlabel ('time (s)')
 ylabel ('acceleration (m/s^2)')
 grid(1)
 title('Acceleration')
+show()
 
 
 
