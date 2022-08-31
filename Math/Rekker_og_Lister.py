@@ -6,7 +6,6 @@ extra = 6
 
 # For en reklusiv formel
 
-
 '''''''''
 for i in range(0,10):
     print(f"Figurtall nr {n} er {an}")
