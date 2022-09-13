@@ -2,7 +2,7 @@
 # Program som regner ut bevegelsen til en gjenstand som faller med luftmotstant, fks en ball
 # Positivt retning er oppover
 
-from matplotlib.pyplot import *
+import matplotlib.pyplot as plt
 
 
 # noe_0 = startnoe
@@ -11,7 +11,7 @@ h_0 = 10  #(m)
 v_0 = -2     #(m/s)
 m = 1       #(kg)
 g = 9.81    #(m/s^2)
-k = 0.02    # luftmotstandkoeffisient
+k = 0.5    # luftmotstandkoeffisient
 
 T = 10      # tid vi skal vise (s)
 dt = 0.001  # tidssteg(s)
@@ -52,29 +52,27 @@ for i in range(0,N):
 #figure(1)
 #plot(time, posision, 'ro')
 
-figure(1)
-plot(t_l, p_l, 'b-')
-xlabel ('time (s)')
-ylabel ('height (m)')
-grid(1)
-title('Height')
+plt.figure(1)
+plt.plot(t_l, p_l, 'b-')
+plt.xlabel ('time (s)')
+plt.ylabel ('height (m)')
+plt.grid(1)
+plt.title('Height')
 
+plt.figure(2)
+plt.plot(t_l, v_l, 'r-')
+plt.xlabel ('time (s)')
+plt.ylabel ('velocity (m/s)')
+plt.grid(1)
+plt.title('Velocity')
 
-figure(2)
-plot(t_l, v_l, 'r-')
-xlabel ('time (s)')
-ylabel ('velocity (m/s)')
-grid(1)
-title('Velocity')
-
-
-figure(3)
-plot(t_l, a_l, 'g-')
-xlabel ('time (s)')
-ylabel ('acceleration (m/s^2)')
-grid(1)
-title('Acceleration')
-show()
+plt.figure(3)
+plt.plot(t_l, a_l, 'g-')
+plt.xlabel ('time (s)')
+plt.ylabel ('acceleration (m/s^2)')
+plt.grid(1)
+plt.title('Acceleration')
+plt.show()
 
 
 
