@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import math as math
 
 def two_dim(h_0: float, v0: float, degrees: float, luft: bool):
-    g = -9.81    #(m/s^2)
+    g = 9.81    #(m/s^2)
     t_0 = 0
     t = 5
     dt = 0.001  # tidssteg(s)
@@ -60,7 +60,7 @@ def two_dim(h_0: float, v0: float, degrees: float, luft: bool):
 
         def y(t):
 
-            return ((1/2)*g)*t**2 + v_y*t + h_0
+            return -((1/2)*g)*t**2 + v_y*t + h_0
 
         while y(t_0)>= 0:
             x_l.append(x(t_0))
