@@ -8,8 +8,8 @@ import matplotlib.pyplot as plt
 # noe_0 = startnoe
 t_0 = 0     #(s)
 h_0 = 10  #(m)
-v_0 = -2     #(m/s)
-m = 1       #(kg)
+v_0 = 3.6     #(m/s)
+m = 80       #(kg)
 g = 9.81    #(m/s^2)
 k = 0.5    # luftmotstandkoeffisient
 
