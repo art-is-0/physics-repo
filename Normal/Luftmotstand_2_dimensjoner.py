@@ -16,20 +16,28 @@ def two_dim(h_0: float, v0: float, degrees: float, luft: bool):
     # lister
     x_l = []
     y_l = []
+    x_l_2 = []
+    y_l_2 = []
 
     v_y = math.sin(degrees * math.pi / 180) * v0
     v_x = math.cos(degrees * math.pi / 180) * v0 
+
+    v_x_2 = v_x
+    v_y_2 = v_y
+
+    h_2 = h_0
+
 
     if luft:
        # k, m = map(float, input('Enter the wind resistance variable and weight in kg = ').split()) # luftmotstandkoeffisient +  #(kg)
         k = 0.5
         m = 80
         g = 9.81    #(m/s^2)
-        s = 1
+        s = 0
 
         for i in range(0,N):
-            L_x = -k*v_x*abs(v_x)      # resistance som alltid peker motsatt retning av fart
-            sumF_x = L_x  # sum Force
+            L_x = k*v_x*abs(v_x)      # resistance som alltid peker motsatt retning av fart
+            sumF_x = -L_x  # sum Force
             a_x = sumF_x / m    # N2L:
             ds = v_x*dt       # change in height
             dv_x = a_x * dt
@@ -52,19 +60,19 @@ def two_dim(h_0: float, v0: float, degrees: float, luft: bool):
             v_y = v_y + dv_y
 
 
-            
+    if luft:        
 
-    else:
-        def x(t):
-            return v_x * t
+    
+        def x(t_2):
+            return v_x_2 * t_2
 
-        def y(t):
+        def y(t_2):
 
-            return -((1/2)*g)*t**2 + v_y*t + h_0
+            return -((1/2)*g)*t_2**2 + v_y_2*t_2 + h_2
 
         while y(t_0)>= 0:
-            x_l.append(x(t_0))
-            y_l.append(y(t_0))
+            x_l_2.append(x(t_0))
+            y_l_2.append(y(t_0))
 
             t_0 = t_0 + dt
 
@@ -74,11 +82,18 @@ def two_dim(h_0: float, v0: float, degrees: float, luft: bool):
     plt.ylabel ('height (m)')
     plt.grid(1)
     plt.title('Movement')
+
+    plt.figure(1)
+    plt.plot(x_l_2, y_l_2, 'r-')
+    plt.xlabel ('x (m)')
+    plt.ylabel ('height (m)')
+    plt.grid(1)
+    plt.title('Movement')
     plt.show()
 
 
 def main():
-    two_dim(20,20,60,True)
+    two_dim(20,20,30,True)
 
 
 # Check if main
