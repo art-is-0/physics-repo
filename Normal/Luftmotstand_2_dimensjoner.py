@@ -51,7 +51,7 @@ def two_dim(h_0: float, v0: float, degrees: float, luft: bool, double: bool):
     def luft_f(v_x, v_y, h_0):
        # k, m = map(float, input('Enter the wind resistance variable and weight in kg = ').split()) # luftmotstandkoeffisient +  #(kg)
         k = float(input('What is the air resistance koeffisient: '))
-        m = float(input('What is the starting height: '))
+        m = float(input('What is the weight: '))
         s = 0
 
         while h_0 >= 0:
