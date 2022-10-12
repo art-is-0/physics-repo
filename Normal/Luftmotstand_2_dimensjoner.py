@@ -55,8 +55,8 @@ def two_dim(h_0: float, v0: float, degrees: float, luft: bool, double: bool):
         s = 0
 
         while h_0 >= 0:
-            L_x = k*v_x*abs(v_x)      # resistance som alltid peker motsatt retning av fart
-            sumF_x = -L_x             # sum Force
+            L_x = -k*v_x*abs(v_x)      # resistance som alltid peker motsatt retning av fart
+            sumF_x = L_x             # sum Force
             a_x = sumF_x / m          # N2L:
             ds = v_x*dt               # change in height
             dv_x = a_x * dt
@@ -138,7 +138,7 @@ def two_dim(h_0: float, v0: float, degrees: float, luft: bool, double: bool):
 # Testing
 
 def main():
-    two_dim(20,20,30,True,True)
+    two_dim(20,20,0,False,False)
 
 
 # Check if main
