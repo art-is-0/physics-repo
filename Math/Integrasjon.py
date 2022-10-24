@@ -1,31 +1,31 @@
-#n = 9**3			# antall rektangler
+# n = 1			# antall rektangler
 
-from math import exp, log
+import math as math
 
 def integral(x_1: int, x_2: int):
 
-	bredde = 0.00001
+	dx = 0.00001
 
 	def f(x):
-		return 9.5*(1-exp(-1.6*x))
+		return 4/(1+x**2)
 
 	arealN = 0
 	arealØ = 0
 	areal_l = []
 
 
-	#bredde = (10 - 1)/n
+	# dx = (x_2 - x_1)/n
 
-	n = int((x_2 - x_1)/bredde)
+	n = int((x_2 - x_1)/dx)
 
 
 	for i in range(n):
 
-		hoydeN = f(x_1 + i*bredde)
-		arealN = arealN + hoydeN*bredde
+		hoydeN = f(x_1 + i*dx)
+		arealN += hoydeN * dx
 
-		hoydeØ = f(x_1+bredde + i*bredde)
-		arealØ = arealØ + hoydeØ*bredde
+		hoydeØ = f(x_1+dx + i*dx)
+		arealØ += hoydeØ * dx
 
 
 	areal_l.append(round(arealN, 3))
@@ -34,7 +34,7 @@ def integral(x_1: int, x_2: int):
 	print(areal_l)
 
 def main():
-	integral(4,5)
+	integral(0,1)
 
 
 # Check if main

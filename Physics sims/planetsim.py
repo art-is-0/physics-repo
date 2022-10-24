@@ -3,7 +3,7 @@ import taichi as ti
 ti.init(arch=ti.cpu)
 
 # VARIABLER
-nPlanteter = 100
+nPlanteter = 20
 delta_t = 3e-5
 
 # Note to self, don't increase resolution

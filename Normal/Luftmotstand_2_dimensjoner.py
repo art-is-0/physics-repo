@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import math as math
 
 
-def two_dim(h_0: float, v0: float, degrees: float, luft: bool, double: bool):
+def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, double: bool):
 
     '''
     A function that plots the movement of an object moving in two dimensions, \r
@@ -54,11 +54,11 @@ def two_dim(h_0: float, v0: float, degrees: float, luft: bool, double: bool):
         m = float(input('What is the weight: '))
         s = 0
 
-        while h_0 >= 0:
+        while h_0 >= s_y:
             L_x = -k*v_x*abs(v_x)      # resistance som alltid peker motsatt retning av fart
             sumF_x = L_x             # sum Force
             a_x = sumF_x / m          # N2L:
-            ds = v_x*dt               # change in height
+            ds = v_x*dt               # change in s
             dv_x = a_x * dt
             
             x_l.append(s)             # Puts the x-value in a list
@@ -104,7 +104,7 @@ def two_dim(h_0: float, v0: float, degrees: float, luft: bool, double: bool):
 
         # Adds values to a list until the y-value == 0
 
-        while y(t_0)>= 0:
+        while y(t_0)>= s_y:
             x_l_2.append(x(t_0))
             y_l_2.append(y(t_0))
 
@@ -138,7 +138,7 @@ def two_dim(h_0: float, v0: float, degrees: float, luft: bool, double: bool):
 # Testing
 
 def main():
-    two_dim(20,20,0,False,False)
+    two_dim(20,0,20,0,False,False)
 
 
 # Check if main
