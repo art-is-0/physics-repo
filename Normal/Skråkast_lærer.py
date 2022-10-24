@@ -56,7 +56,7 @@ for i in range(0,N):
     tid.append(t)
     posisjon_x.append(s[0])
     posisjon_y.append(s[1])
-    fart.append(v)
+    fart.append(norm(v))
     akselerasjon.append(norm(a))
     
     #endrer variablene før ny runde i løkka
