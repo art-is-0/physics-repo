@@ -62,8 +62,9 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
         m = float(input('What is the weight: '))
         s = 0
         t = 0
+        s_0 = 0
 
-        while h_0[1] >= s_y:
+        while h_0[1] >= s_0:
             L = -k*norm(v)*abs(norm(v))      # resistance som alltid peker motsatt retning av fart
             G = np.array([0,-m*g])
             sumF = G + L             # sum Force
@@ -81,6 +82,9 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
             h_0 = h_0 + dh
             v = v + dv
             t += dt
+
+            if h_0[1] < s_y:
+                s_0 = s_y
         
 
         # Plots the function with air resistance
@@ -159,7 +163,7 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
 # Testing
 
 def main():
-    two_dim(2,0,2,20,True,True)
+    two_dim(2,5,20,20,True,True)
 
 
 # Check if main
