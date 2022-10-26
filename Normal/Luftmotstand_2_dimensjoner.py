@@ -6,7 +6,7 @@
 import matplotlib.pyplot as plt
 import math as math
 import numpy as np
-
+from numpy.linalg import norm
 
 
 def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, double: bool):
@@ -22,10 +22,10 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
 
     Note: for at double works, luft also must be true. 
 
-    Example: two_dim(10, 25, 30, True, False), for a plot with only air \r
+    Example: two_dim(10, 0, 25, 30, True, False), for a plot with only air \r
     resistance.
 
-    Example: two_dim(10, 25, 30, True, True), for a plot with and without \r
+    Example: two_dim(10, 0, 25, 30, True, True), for a plot with and without \r
     air resistance.
     '''
 
@@ -33,8 +33,9 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
     g = 9.81    #(m/s^2)
     dt = 0.001  # tidssteg(s)
 
+
     h_2 = h_0
-    h_0_ar = np.array([0, h_0])
+    h_0_arr = np.array([0, h_0])
 
     # lists
     x_l = []
@@ -49,6 +50,7 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
     v_y = math.sin(degrees * math.pi / 180) * v0
     v_x = math.cos(degrees * math.pi / 180) * v0 
     v_0 = np.array([v_x, v_y])
+    v = v_0
 
 
 
@@ -59,25 +61,30 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
         k = float(input('What is the air resistance koeffisient: '))
         m = float(input('What is the weight: '))
         s = 0
+        t = 0
+        s_0 = 0
 
-        while h_0 >= s_y:
-            L_x = -k*np.norm(v)*abs(np.norm(v))      # resistance som alltid peker motsatt retning av fart
+        while h_0[1] >= s_0:
+            L = -k*norm(v)*abs(norm(v))      # resistance som alltid peker motsatt retning av fart
             G = np.array([0,-m*g])
-            sumF = G + L_x             # sum Force
+            sumF = G + L             # sum Force
             a = sumF / m          # N2L:
 
-            ds = v*dt               # change in s
+            dh = v*dt               # change in s
             dv = a * dt
             
             t_l.append(t)
-            x_l.append(s[0])
-            y_l.append(s[1])
-            v_l.append(np.norm(v))
-            a_l.append(np.norm(a))
-
-            s += ds
-            v += dv
+            x_l.append(h_0[0])
+            y_l.append(h_0[1])
+            v_l.append(norm(v))
+            a_l.append(norm(a))
+            
+            h_0 = h_0 + dh
+            v = v + dv
             t += dt
+
+            if h_0[1] < s_y:
+                s_0 = s_y
         
 
         # Plots the function with air resistance
@@ -90,18 +97,20 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
         plt.title('Movement')
 
         plt.figure(2) #setter inn en fartsgraf
-        plt.plot(t,v)
+        plt.plot(t_l, v_l, 'b-')
         #sette navn på akser
-        plt.xlabel ('tid (s)')
-        plt.ylabel ('fart (m/s)')
+        plt.xlabel ('time (s)')
+        plt.ylabel ('speed (m/s)')
         plt.grid()
+        plt.title('Speed')
 
         plt.figure(3) #setter inn en akselerasjonsgraf
-        plt.plot(t,a)
+        plt.plot(t_l, a_l)
         #sette navn på akser
-        plt.xlabel ('tid (s)')
-        plt.ylabel ('akselerasjon (m/s^2)')
+        plt.xlabel ('time (s)')
+        plt.ylabel ('acceleration (m/s^2)')
         plt.grid()
+        plt.title('Acceleration')
 
     # A function that calculates and plots without air resistance
 
@@ -139,7 +148,7 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
     # Simple code for luft and double chooses
 
     if luft:
-        luft_f(v_0, h_0)
+        luft_f(v, h_0_arr)
 
         if double:
             ligninger()
@@ -154,7 +163,7 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
 # Testing
 
 def main():
-    two_dim(20,0,20,0,False,False)
+    two_dim(2,5,20,20,True,True)
 
 
 # Check if main
