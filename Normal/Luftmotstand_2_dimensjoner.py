@@ -86,6 +86,7 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
             if h_0[1] < s_y:
                 s_0 = s_y
         
+        print(h_0[1])
 
         # Plots the function with air resistance
 
@@ -163,7 +164,7 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
 # Testing
 
 def main():
-    two_dim(2,5,20,20,True,True)
+    two_dim(2,3,5,45,True,True)
 
 
 # Check if main
