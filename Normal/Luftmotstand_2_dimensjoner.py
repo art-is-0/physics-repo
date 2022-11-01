@@ -3,7 +3,6 @@
 # Positivt x retning er til høyre og positiv y retning er oppover
 
 # Imports
-import this
 import matplotlib.pyplot as plt
 import math as math
 import numpy as np
@@ -90,7 +89,6 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
             if h_0[1] < s_y and dh[1] <= 0:
                 s_0 = s_y
         
-        print(h_0[1])
 
         # Plots the function with air resistance
 
@@ -172,11 +170,7 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
 # Testing
 
 def main():
-<<<<<<< HEAD
-    two_dim(2,3,5,45,True,True)
-=======
     two_dim(2,5,20,45,True,True)
->>>>>>> 0dd9444c2b87576aad069595eaa5730f90cc67b8
 
 
 # Check if main
