@@ -3,6 +3,7 @@
 # Positivt x retning er til høyre og positiv y retning er oppover
 
 # Imports
+import this
 import matplotlib.pyplot as plt
 import math as math
 import numpy as np
@@ -58,8 +59,10 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
 
     def luft_f(v, h_0):
        # k, m = map(float, input('Enter the wind resistance variable and weight in kg = ').split()) # luftmotstandkoeffisient +  #(kg)
-        k = float(input('What is the air resistance koeffisient: '))
-        m = float(input('What is the weight: '))
+        # k = float(input('What is the air resistance koeffisient: '))
+        # m = float(input('What is the weight: '))
+        k = 0.2
+        m = 10
         s = 0
         t = 0
         s_0 = 0
@@ -83,7 +86,8 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
             v = v + dv
             t += dt
 
-            if h_0[1] < s_y:
+
+            if h_0[1] < s_y and dh[1] <= 0:
                 s_0 = s_y
         
         print(h_0[1])
@@ -117,6 +121,7 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
 
     def ligninger():       
         t_0 = 0 
+        s_0 = 0
 
         # A function for the x-values 
 
@@ -130,11 +135,14 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
 
         # Adds values to a list until the y-value == 0
 
-        while y(t_0)>= s_y:
+        while y(t_0)>= s_0:
             x_l_2.append(x(t_0))
             y_l_2.append(y(t_0))
 
             t_0 += dt
+
+            if y(t_0) < s_y and y(t_0)-y(t_0 - 1) <= 0:
+                s_0 = s_y
 
         # Plots the movement without air resistance
 
@@ -164,7 +172,11 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
 # Testing
 
 def main():
+<<<<<<< HEAD
     two_dim(2,3,5,45,True,True)
+=======
+    two_dim(2,5,20,45,True,True)
+>>>>>>> 0dd9444c2b87576aad069595eaa5730f90cc67b8
 
 
 # Check if main
