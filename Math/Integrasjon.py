@@ -2,20 +2,16 @@
 
 import math as math
 
-def integral(x_1: int, x_2: int):
+def integral(x_1: int, x_2: int, f):
 
 	dx = 0.00001
 
-	def f(x):
-		return 4/(1+x**2)
 
 	arealN = 0
 	arealØ = 0
 	areal_l = []
 
-
 	# dx = (x_2 - x_1)/n
-
 	n = int((x_2 - x_1)/dx)
 
 
@@ -34,7 +30,7 @@ def integral(x_1: int, x_2: int):
 	print(areal_l)
 
 def main():
-	integral(0,1)
+	integral(0,1, lambda x: x**2 )
 
 
 # Check if main
