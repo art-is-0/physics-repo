@@ -58,20 +58,19 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
 
     def luft_f(v, h_0):
        # k, m = map(float, input('Enter the wind resistance variable and weight in kg = ').split()) # luftmotstandkoeffisient +  #(kg)
-        # k = float(input('What is the air resistance koeffisient: '))
-        # m = float(input('What is the weight: '))
-        k = 0.2
-        m = 10
+        k = float(input('What is the air resistance koeffisient: '))
+        m = float(input('What is the weight: '))
+        # k = 0.0011
+        # m = 0.06
         s = 0
         t = 0
         s_0 = 0
 
-        while h_0[1] >= s_0:
-            L = -k*norm(v)*abs(norm(v))      # resistance som alltid peker motsatt retning av fart
+        while h_0[1] >= s_0 or h_0[0] <= 0:
+            L = -k*norm(v)**2*(v/norm(v))      # resistance som alltid peker motsatt retning av fart
             G = np.array([0,-m*g])
             sumF = G + L             # sum Force
             a = sumF / m          # N2L:
-
             dh = v*dt               # change in s
             dv = a * dt
             
@@ -99,21 +98,23 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
         plt.grid(1)
         plt.title('Movement')
 
-        plt.figure(2) #setter inn en fartsgraf
-        plt.plot(t_l, v_l, 'b-')
-        #sette navn på akser
-        plt.xlabel ('time (s)')
-        plt.ylabel ('speed (m/s)')
-        plt.grid()
-        plt.title('Speed')
+        print(h_0[0])
 
-        plt.figure(3) #setter inn en akselerasjonsgraf
-        plt.plot(t_l, a_l)
-        #sette navn på akser
-        plt.xlabel ('time (s)')
-        plt.ylabel ('acceleration (m/s^2)')
-        plt.grid()
-        plt.title('Acceleration')
+        # plt.figure(2) #setter inn en fartsgraf
+        # plt.plot(t_l, v_l, 'b-')
+        # #sette navn på akser
+        # plt.xlabel ('time (s)')
+        # plt.ylabel ('speed (m/s)')
+        # plt.grid()
+        # plt.title('Speed')
+
+        # plt.figure(3) #setter inn en akselerasjonsgraf
+        # plt.plot(t_l, a_l)
+        # #sette navn på akser
+        # plt.xlabel ('time (s)')
+        # plt.ylabel ('acceleration (m/s^2)')
+        # plt.grid()
+        # plt.title('Acceleration')
 
     # A function that calculates and plots without air resistance
 
@@ -142,6 +143,7 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
             if y(t_0) < s_y and y(t_0)-y(t_0 - 1) <= 0:
                 s_0 = s_y
 
+        print(x(t_0))
         # Plots the movement without air resistance
 
         plt.figure(1)
@@ -170,7 +172,7 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
 # Testing
 
 def main():
-    two_dim(2,5,20,45,True,True)
+    two_dim(2,0,42,45,False,False)
 
 
 # Check if main
