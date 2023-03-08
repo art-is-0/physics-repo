@@ -1,17 +1,20 @@
-# n = 1			# antall rektangler
-
 import math as math
 
 def integral(x_1: int, x_2: int, f):
+	"""
+	integral(1, 2, lambda x: x**2)
+	"""
 
 	dx = 0.00001
-
+	# n = 1		# antall rektangler
 
 	arealN = 0
 	arealØ = 0
 	areal_l = []
 
+
 	# dx = (x_2 - x_1)/n
+
 	n = int((x_2 - x_1)/dx)
 
 
@@ -29,8 +32,27 @@ def integral(x_1: int, x_2: int, f):
 
 	print(areal_l)
 
+
+def omdreining(a:float, b:float, f):
+
+	"""
+	omdreining(1, 2, lambda x: x**2)
+	"""
+	n = 10000
+
+	dx = (b-a)/n
+
+	summen = 0
+
+	for i in range(n):
+		r = dx * f(a+i*dx)
+		summen += r
+
+	print(summen*math.pi)
+
+
 def main():
-	integral(0,1, lambda x: x**2 )
+	integral(0,1, lambda x: x**2)
 
 
 # Check if main
