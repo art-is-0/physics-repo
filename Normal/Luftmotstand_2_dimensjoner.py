@@ -30,7 +30,7 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
     '''
 
     # Values
-    g = 9.81    #(m/s^2)
+    g = 1.62    #(m/s^2)
     dt = 0.001  # tidssteg(s)
 
 
