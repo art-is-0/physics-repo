@@ -35,18 +35,20 @@ def integral(x_1: int, x_2: int, f):
 
 def omdreining(a:float, b:float, f):
 
+	"""
+	omdreining(1, 2, lambda x: x**2)
+	"""
+	n = 10000
 
-    n = 10000
+	dx = (b-a)/n
 
-    dx = (b-a)/n
+	summen = 0
 
-    summen = 0
+	for i in range(n):
+		r = dx * f(a+i*dx)
+		summen += r
 
-    for i in range(n):
-        r = dx * f(a+i*dx)
-        summen += r
-
-    print(summen*math.pi)
+	print(summen*math.pi)
 
 
 def main():
