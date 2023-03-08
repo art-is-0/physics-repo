@@ -2,12 +2,9 @@
 # Program som regner ut bevegelen til en legeme som beveger seg med luftmotstand
 # Positivt x retning er til høyre og positiv y retning er oppover
 
-# Imports
-import matplotlib.pyplot as plt
-import math as math
-import numpy as np
-from numpy.linalg import norm
 
+
+# The function you can import
 
 def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, double: bool):
 
@@ -29,10 +26,15 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
     air resistance.
     '''
 
-    # Values
-    g = 1.62    #(m/s^2)
-    dt = 0.001  # tidssteg(s)
+    # Imports
+    import matplotlib.pyplot as plt
+    import math as math
+    import numpy as np
+    from numpy.linalg import norm
 
+    # Values
+    g = 9.81    #(m/s^2)
+    dt = 0.001  # tidssteg(s)
 
     h_2 = h_0
     h_0_arr = np.array([0, h_0])
@@ -52,8 +54,6 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
     v_0 = np.array([v_x, v_y])
     v = v_0
 
-
-
     # A function that calculates and plots the movement with air resistance
 
     def luft_f(v, h_0):
@@ -66,6 +66,7 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
         t = 0
         s_0 = 0
 
+        # The while knot that calculates everything
         while h_0[1] >= s_0 or h_0[0] <= 0:
             L = -k*norm(v)**2*(v/norm(v))      # resistance som alltid peker motsatt retning av fart
             G = np.array([0,-m*g])
@@ -74,6 +75,7 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
             dh = v*dt               # change in s
             dv = a * dt
             
+            # Put everything in lists
             t_l.append(t)
             x_l.append(h_0[0])
             y_l.append(h_0[1])
@@ -84,16 +86,14 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
             v = v + dv
             t += dt
 
-
             if h_0[1] < s_y and dh[1] <= 0:
                 s_0 = s_y
-        
 
         # Plots the function with air resistance
 
         plt.figure(1)
         plt.plot(x_l, y_l, 'b-')
-        plt.xlabel ('x (m)')
+        plt.xlabel ('length (m)')
         plt.ylabel ('height (m)')
         plt.grid(1)
         plt.title('Movement')
@@ -148,11 +148,10 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
 
         plt.figure(1)
         plt.plot(x_l_2, y_l_2, 'r-')
-        plt.xlabel ('x (m)')
+        plt.xlabel ('length (m)')
         plt.ylabel ('height (m)')
         plt.grid(1)
         plt.title('Movement')
-
 
     # Simple code for luft and double chooses
 
@@ -165,15 +164,12 @@ def two_dim(h_0: float, s_y: float, v0: float, degrees: float, luft: bool, doubl
     else:
         ligninger()
 
-
     plt.show()
-
 
 # Testing
 
 def main():
     two_dim(2,0,42,45,False,False)
-
 
 # Check if main
 if __name__ == '__main__':
