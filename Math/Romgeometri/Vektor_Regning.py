@@ -1,4 +1,5 @@
 import numpy as np
+from numpy.linalg import norm
 
 class vector_calculation:
     
@@ -23,15 +24,15 @@ class vector_calculation:
         return prikk
     
     def kryssprodukt(self):
-        x = np.cross(self.v1, self.v2)
+        kryss = np.cross(self.v1, self.v2)
         #  = np.cross(self.v1, self.v2)
-        # print(kryss)
+        print(kryss)
 
-        # if kryss == 0:
+        # if np.sqrt(kryss(0)**2 + kryss(1)**2 + kryss(2)**2) == 0:
         #     print('Vektorene er pararelle')
 
         return x
     
 
-x=vector_calculation(2,5,6,2,3,5)
-x.prikkprodukt()
+x = vector_calculation(2,5,6,2,3,5)
+x.kryssprodukt()
