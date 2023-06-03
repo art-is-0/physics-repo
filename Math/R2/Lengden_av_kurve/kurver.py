@@ -22,20 +22,20 @@ def curve_length(t_start: float, t_end: float, x: any, y: any, z: any) -> float:
     length = 0
     i = t_start
     dx = 0.001          # determines how small the vectors are
-    # n = (x_slutt - x_start)/dx
+    n = int((t_end - t_start)/dx)
 
-    # while function to collect all the data
-    while i < t_end:
+    # for function to collect all the data
+    for i in range(n):
         # creating vectors to origo out of the function
-        vec_A = f(i)
-        vec_B = f(i + dx)
+        vec_A = f(i*dx)
+        vec_B = f(i*dx + dx)
 
         # creates a vector out of the points
         vec_AB = vec_B - vec_A
 
         # norm finds the length of the vector and then gets put into a variable
         length += norm(vec_AB)
-        i += dx         # increases the value
+        # i += dx         # increases the value
 
     return length
 
